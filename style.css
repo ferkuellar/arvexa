@@ -365,3 +365,119 @@ html[data-theme="dark"] .sub-hero::after{ background:linear-gradient(180deg, rgb
 @media (min-width: 900px){
   .hero.hero-img.hero-parallax{ background-attachment: fixed; }
 }
+
+
+/* ===== Timeline Pro (horizontal) ===== */
+.timeline-pro{
+  position: relative;
+  padding: 18px 6px 6px;
+  margin-top: 6px;
+  overflow-x: auto;
+  display: flex;
+  gap: 20px;
+  scroll-snap-type: x mandatory;
+}
+
+/* rail (línea base) */
+.timeline-pro::before{
+  content:"";
+  position:absolute; left:0; right:0; top:62px;
+  height:4px;
+  background: linear-gradient(90deg, var(--line) 0, var(--line) 100%);
+  border-radius: 4px;
+}
+
+/* milestone */
+.ms{
+  position: relative;
+  flex: 0 0 300px; /* ancho de cada tarjeta */
+  min-width: 260px;
+  scroll-snap-align: start;
+  padding-top: 50px; /* espacio para la burbuja */
+}
+
+/* punto sobre la rail */
+.ms::before{
+  content:"";
+  position:absolute; top:56px; left:50%;
+  width:12px; height:12px; border-radius:50%;
+  background: var(--red);
+  box-shadow: 0 0 0 4px rgba(215,38,56,.18);
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+/* badge de año con "pico" */
+.year-badge{
+  position:absolute; top:16px; left:50%;
+  transform: translateX(-50%);
+  background: color-mix(in oklab, var(--navy) 90%, #ffffff 0%);
+  color:#fff;
+  font-weight:700;
+  border-radius: 999px;
+  padding: 8px 14px;
+  box-shadow: var(--shadow);
+}
+.year-badge::after{
+  content:"";
+  position:absolute; left:50%; bottom:-9px; transform:translateX(-50%);
+  width: 16px; height: 10px;
+  background: color-mix(in oklab, var(--navy) 90%, #ffffff 0%);
+  -webkit-clip-path: polygon(50% 100%, 0 0, 100% 0);
+  clip-path: polygon(50% 100%, 0 0, 100% 0);
+}
+
+/* tarjeta del hito */
+.ms .card{
+  background: var(--paper);
+  border:1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  padding: 14px;
+}
+.ms .title{
+  display:flex; align-items:center; gap:8px;
+  font-family: "Archivo Black", system-ui;
+  margin: 0 0 6px;
+  color: var(--ink);
+}
+.ms .desc{ margin:0; color: var(--muted) }
+
+/* “chips” opcionales para área/tema */
+.ms .chip{
+  display:inline-block;
+  background: color-mix(in oklab, var(--bone) 80%, #fff);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+
+/* responsive */
+@media (max-width: 640px){
+  .timeline-pro{ gap:16px }
+  .ms{ flex-basis: 260px }
+}
+
+
+/* ===== FIX: subtítulos (chips) más oscuros en Timeline ===== */
+
+/* Modo claro: texto azul institucional y fondo claro */
+.timeline-pro .chip{
+  background: #F7F9FC;                   /* fondo un poco más claro */
+  border-color: rgba(11,31,59,.18);
+  color: #0B1F3B;                         /* texto oscuro/legible */
+  font-weight: 600;
+}
+
+/* Modo oscuro: forzamos texto oscuro sobre la píldora clara */
+html[data-theme="dark"] .timeline-pro .chip{
+  background: #F2F4F7;                    /* hueso */
+  border-color: rgba(11,31,59,.24);
+  color: #0B1F3B;                         /* oscuro para contraste */
+}
+
+/* (Opcional) Subtexto de las tarjetas un poco más marcado */
+.timeline-pro .desc{ color: color-mix(in oklab, var(--ink) 75%, #111827); }

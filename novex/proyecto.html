@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{project_title}} — Novex | ARVEXA Group</title>
+  <meta name="description" content="{{meta_description}}">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    .project-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:10px 0 0}
+    .project-meta .kv{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:10px}
+    .project-meta .k{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.2px}
+    .project-meta .v{font-weight:600;color:var(--ink)}
+    .twocol{display:grid;grid-template-columns:1.3fr .7fr;gap:18px}
+    .specs{width:100%;border-collapse:collapse}
+    .specs th,.specs td{border:1px solid var(--line);padding:8px;text-align:left}
+    .specs th{background:color-mix(in oklab, var(--bone) 80%, var(--paper));font-weight:600}
+    .project-gallery{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+    .project-gallery a{position:relative;display:block;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--paper)}
+    .project-gallery img{width:100%;height:180px;object-fit:cover;display:block}
+    .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.86);display:none;align-items:center;justify-content:center;z-index:1200}
+    .lightbox.open{display:flex}
+    .lightbox img{max-width:92vw;max-height:88vh;border-radius:10px;box-shadow:0 10px 28px rgba(0,0,0,.5)}
+    .lb-ui{position:fixed;inset:0;display:flex;align-items:center;justify-content:space-between;pointer-events:none}
+    .lb-btn{pointer-events:auto;background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.2);border-radius:12px;padding:8px 12px;margin:20px;cursor:pointer}
+    .lb-close{position:fixed;top:12px;right:12px}
+    @media (max-width: 900px){.twocol{grid-template-columns:1fr}.project-meta{grid-template-columns:1fr 1fr}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="navwrap">
+      <div class="brand">ARVEXA Group</div>
+      <nav class="nav" aria-label="Principal">
+        <a href="/">Holding</a><a href="/novex" class="active">Novex</a><a href="/#cotizar">Cotizar</a>
+        <button id="themeToggle" class="theme-toggle" aria-label="Cambiar tema">
+          <svg class="sun" width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M6.76 4.84l-1.8-1.79L3.17 4.84l1.79 1.79 1.8-1.79zM1 13h3v-2H1v2zm10-9h2V1h-2v3zm7.07 2.05l1.79-1.79-1.79-1.79-1.79 1.79 1.79 1.79zM17 13h3v-2h-3v2zM12 6a6 6 0 100 12A6 6 0 0012 6zm-1 17h2v-3h-2v3zM3.17 19.16l1.79 1.79 1.8-1.79-1.8-1.79-1.79 1.79zM18.36 17.37l1.79 1.79 1.79-1.79-1.79-1.79-1.79 1.79z"/></svg>
+          <svg class="moon" width="18" height="18" viewBox="0 0 24 24" style="display:none"><path fill="currentColor" d="M20.742 13.045A8.5 8.5 0 1111.05 3.258a7 7 0 109.692 9.787z"/></svg>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero hero-img" style="background-image:url('/assets/img/novex.jpg')" aria-labelledby="hero-title">
+    <div class="section hero-inner" style="text-align:center">
+      <h1 id="hero-title">{{project_title}}</h1>
+      <p class="sub">Novex · Fire & Security · {{ubicacion}}</p>
+      <div class="cta-row"><a class="btn" href="/#cotizar">Cotiza un proyecto similar</a><a class="btn alt" href="/novex#portafolio">Ver más proyectos</a></div>
+    </div>
+  </section>
+
+  <nav class="section" aria-label="Miga de pan" style="margin-top:10px">
+    <small class="muted"><a href="/">Home</a> › <a href="/novex">Novex</a> › <span>{{project_title}}</span></small>
+  </nav>
+
+  <section class="section">
+    <div class="block">
+      <h2>Resumen del proyecto</h2>
+      <p class="muted">{{project_summary}}</p>
+      <div class="project-meta">
+        <div class="kv"><div class="k">Cliente</div><div class="v">{{cliente}}</div></div>
+        <div class="kv"><div class="k">Ubicación</div><div class="v">{{ubicacion}}</div></div>
+        <div class="kv"><div class="k">Periodo</div><div class="v">{{fecha_inicio}} – {{fecha_fin}}</div></div>
+        <div class="kv"><div class="k">Sistemas</div><div class="v">{{sistemas}}</div></div>
+        <div class="kv"><div class="k">Integraciones</div><div class="v">{{integraciones}}</div></div>
+        <div class="kv"><div class="k">Normas</div><div class="v">NFPA · NOM · {{otras_normas}}</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="twocol">
+      <div class="block">
+        <h2>Alcance & resultados</h2>
+        <h3>Reto</h3><p class="muted">{{reto}}</p>
+        <h3>Solución</h3><p class="muted">{{solucion}}</p>
+        <h3>Resultados</h3><p class="muted">{{resultados}}</p>
+      </div>
+      <aside class="block">
+        <h3>Ficha técnica</h3>
+        <table class="specs">
+          <tbody>
+            <tr><th>Panel</th><td>{{panel}}</td></tr>
+            <tr><th>Detección</th><td>{{deteccion}}</td></tr>
+            <tr><th>Audio/PA</th><td>{{audio}}</td></tr>
+            <tr><th>CCTV</th><td>{{cctv}}</td></tr>
+            <tr><th>Acceso</th><td>{{acceso}}</td></tr>
+            <tr><th>Red/BMS</th><td>{{bms}}</td></tr>
+          </tbody>
+        </table>
+        <div style="margin-top:10px"><a class="btn ghost" href="{{url_datasheet}}" download>Descargar datasheet (PDF)</a></div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="block">
+      <h2>Galería</h2>
+      <div class="project-gallery" id="gallery">
+        <a href="/assets/projects/novex/1.jpg"><img src="/assets/projects/novex/1.jpg" alt="{{project_title}} — foto 1"></a>
+        <a href="/assets/projects/novex/2.jpg"><img src="/assets/projects/novex/2.jpg" alt="{{project_title}} — foto 2"></a>
+        <a href="/assets/projects/novex/3.jpg"><img src="/assets/projects/novex/3.jpg" alt="{{project_title}} — foto 3"></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="block">
+      <h2>Video</h2>
+      <div style="position:relative;padding-top:56.25%;border:1px solid var(--line);border-radius:12px;overflow:hidden">
+        <iframe src="https://www.youtube.com/embed/{{youtube_id}}" title="Video del proyecto" style="position:absolute;inset:0;width:100%;height:100%;border:0" allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="block">
+      <h2>Proyectos relacionados</h2>
+      <div class="grid">
+        <a class="tile minimal" href="/novex/proyecto.html"><div class="bg" style="background-image:url('/assets/img/novex.jpg')"></div><span class="btn enter">Ver proyecto</span></a>
+        <a class="tile minimal" href="/novex/proyecto.html"><div class="bg" style="background-image:url('/assets/img/novex.jpg')"></div><span class="btn enter">Ver proyecto</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="prefooter" aria-labelledby="cta"><div class="wrap"><div class="cta-banner">
+    <div><h2 id="cta">¿Necesitas protección contra incendio y seguridad?</h2><p>Diseño direccionable listo para auditoría.</p></div>
+    <div class="cta-actions"><a class="btn" href="/#cotizar">Solicitar cotización</a><a class="btn ghost" href="mailto:contacto@arvexa.com">contacto@arvexa.com</a></div>
+  </div></div></section>
+
+  <footer class="footer" role="contentinfo">
+    <div class="footer-grid">
+      <div class="col brandcol"><div class="fbrand">ARVEXA Group</div><p class="tagline">Construcción · HVAC · Eléctrico · Detección de Incendios</p><p class="about">Un grupo, cuatro especialidades y un solo estándar de calidad.</p></div>
+      <div class="col"><h4>Subsidiarias</h4><ul class="links"><li><a href="/hvac">HVAC Chihuahua</a></li><li><a href="/novex">Novex</a></li><li><a href="/electrica">Ing. Eléctrica de Chihuahua</a></li><li><a href="/arke">Arke.mx</a></li></ul></div>
+      <div class="col"><h4>Servicios</h4><ul class="links"><li><a href="/hvac">HVAC & MEP</a></li><li><a href="/electrica">Eléctrico MT/BT</a></li><li><a href="/novex">Detección & Seguridad</a></li><li><a href="/arke">Obra civil & Arquitectura</a></li></ul></div>
+      <div class="col"><h4>Contacto</h4><ul class="contact"><li><span class="ico">📍</span><span>Chihuahua, MX</span></li><li><span class="ico">📞</span><a href="tel:+526140000000">+52 (614) 000 0000</a></li><li><span class="ico">✉️</span><a href="mailto:contacto@arvexa.com">contacto@arvexa.com</a></li></ul></div>
+    </div>
+    <div class="legal"><div class="wrap"><small>© ARVEXA Group</small><small><a href="/novex">Volver a Novex</a> · <a href="/">Holding</a></small></div></div>
+  </footer>
+
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Project","name":"{{project_title}}","description":"{{project_summary}}","areaServed":"{{ubicacion}}","location":{"@type":"Place","name":"{{ubicacion}}"},"client":{"@type":"Organization","name":"{{cliente}}"},"contractor":{"@type":"Organization","name":"Novex"},"startDate":"{{fecha_inicio}}","endDate":"{{fecha_fin}}","additionalProperty":[{"@type":"PropertyValue","name":"Sistemas","value":"{{sistemas}}"},{"@type":"PropertyValue","name":"Integraciones","value":"{{integraciones}}"},{"@type":"PropertyValue","name":"Normas","value":"NFPA, NOM, {{otras_normas}}"}]}
+  </script>
+
+  <script>
+    (function(){const k='arvexaTheme', r=document.documentElement, s=localStorage.getItem(k);
+      r.setAttribute('data-theme', s ? s : (matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'));
+      const b=document.getElementById('themeToggle'), sun=b.querySelector('.sun'), moon=b.querySelector('.moon');
+      const u=()=>{const d=r.getAttribute('data-theme')==='dark'; sun.style.display=d?'none':'inline'; moon.style.display=d?'inline':'none';}; u();
+      b.addEventListener('click',()=>{const n=r.getAttribute('data-theme')==='dark'?'light':'dark'; r.setAttribute('data-theme',n); localStorage.setItem(k,n); u();});
+    })();
+    // Lightbox (idéntico al de HVAC)
+    (function(){const g=document.getElementById('gallery');if(!g) return;const L=Array.from(g.querySelectorAll('a'));
+      const lb=document.createElement('div');lb.className='lightbox';lb.innerHTML=`<button class="lb-btn lb-close" aria-label="Cerrar (Esc)">Cerrar ✕</button><div class="lb-ui"><button class="lb-btn lb-prev" aria-label="Anterior (←)">←</button><button class="lb-btn lb-next" aria-label="Siguiente (→)">→</button></div><img alt="Vista de galería">`;document.body.appendChild(lb);
+      const img=lb.querySelector('img'),c=lb.querySelector('.lb-close'),p=lb.querySelector('.lb-prev'),n=lb.querySelector('.lb-next');let i=0;
+      function open(k){i=k;img.src=L[i].href;lb.classList.add('open');} function close(){lb.classList.remove('open');}
+      function prev(){i=(i-1+L.length)%L.length;img.src=L[i].href;} function next(){i=(i+1)%L.length;img.src=L[i].href;}
+      L.forEach((a,k)=>a.addEventListener('click',e=>{e.preventDefault();open(k);})); c.addEventListener('click',close);
+      lb.addEventListener('click',e=>{if(e.target===lb) close();}); document.addEventListener('keydown',e=>{if(!lb.classList.contains('open')) return; if(e.key==='Escape') close(); if(e.key==='ArrowLeft') prev(); if(e.key==='ArrowRight') next();});
+      p.addEventListener('click',prev); n.addEventListener('click',next);
+    })();
+  </script>
+</body>
+</html>

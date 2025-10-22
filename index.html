@@ -9,6 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
   <!-- Header -->
   <header>
@@ -20,25 +21,30 @@
         <a href="#historia">Historia</a>
         <a href="#cotizar">Cotizar</a>
         <button id="themeToggle" class="theme-toggle" aria-label="Cambiar tema">
-          <svg class="sun" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.76 4.84l-1.8-1.79L3.17 4.84l1.79 1.79 1.8-1.79zM1 13h3v-2H1v2zm10-9h2V1h-2v3zm7.07 2.05l1.79-1.79-1.79-1.79-1.79 1.79 1.79 1.79zM17 13h3v-2h-3v2zM12 6a6 6 0 100 12A6 6 0 0012 6zm-1 17h2v-3h-2v3zM3.17 19.16l1.79 1.79 1.8-1.79-1.8-1.79-1.79 1.79zM18.36 17.37l1.79 1.79 1.79-1.79-1.79-1.79-1.79 1.79z"/></svg>
-          <svg class="moon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="display:none"><path fill="currentColor" d="M20.742 13.045A8.5 8.5 0 1111.05 3.258a7 7 0 109.692 9.787z"/></svg>
+          <!-- Sun -->
+          <svg class="sun" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="currentColor" d="M6.76 4.84l-1.8-1.79L3.17 4.84l1.79 1.79 1.8-1.79zM1 13h3v-2H1v2zm10-9h2V1h-2v3zm7.07 2.05l1.79-1.79-1.79-1.79-1.79 1.79 1.79 1.79zM17 13h3v-2h-3v2zM12 6a6 6 0 100 12A6 6 0 0012 6zm-1 17h2v-3h-2v3zM3.17 19.16l1.79 1.79 1.8-1.79-1.8-1.79-1.79 1.79zM18.36 17.37l1.79 1.79 1.79-1.79-1.79-1.79-1.79 1.79z"/>
+          </svg>
+          <!-- Moon -->
+          <svg class="moon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="display:none">
+            <path fill="currentColor" d="M20.742 13.045A8.5 8.5 0 1111.05 3.258a7 7 0 109.692 9.787z"/>
+          </svg>
         </button>
       </nav>
     </div>
   </header>
 
-<!-- Hero con imagen (sin blur) -->
-<section class="hero hero-img hero-parallax" aria-labelledby="hero-title">
-  <div class="section hero-inner" style="text-align:center">
-    <h1 id="hero-title">Ingeniería directa. Resultados claros.</h1>
-    <p class="sub">Construcción · HVAC · Eléctrico · Detección de Incendios</p>
-    <div class="cta-row">
-      <a class="btn" href="#subsidiarias">Explorar subsidiarias</a>
-      <a class="btn alt" href="#cotizar">Solicitar cotización</a>
+  <!-- Hero con imagen -->
+  <section class="hero hero-img hero-parallax" aria-labelledby="hero-title">
+    <div class="section hero-inner" style="text-align:center">
+      <h1 id="hero-title">Ingeniería directa. Resultados claros.</h1>
+      <p class="sub">Construcción · HVAC · Eléctrico · Detección de Incendios</p>
+      <div class="cta-row">
+        <a class="btn" href="#subsidiarias">Explorar subsidiarias</a>
+        <a class="btn alt" href="#cotizar">Solicitar cotización</a>
+      </div>
     </div>
-  </div>
-</section>
-
+  </section>
 
   <!-- Grid minimal -->
   <main id="subsidiarias" class="section" aria-labelledby="subs-title">
@@ -81,19 +87,75 @@
     </div>
   </section>
 
-  <!-- Historia -->
+  <!-- Historia (Timeline Pro) -->
   <section id="historia" class="section">
     <div class="block" aria-labelledby="hist-title">
       <h2 id="hist-title">Historia</h2>
-      <ol class="timeline muted">
-        <li><strong>2016</strong> — Nace Arke.mx (obra civil y arquitectura).</li>
-        <li><strong>2018</strong> — Arke.mx amplía portafolio a carpintería y cocinas.</li>
-        <li><strong>2019</strong> — Se formaliza Ingeniería Eléctrica de Chihuahua (MT/BT).</li>
-        <li><strong>2021</strong> — Nace Novex (seguridad electrónica y detección).</li>
-        <li><strong>2023</strong> — Integración de procesos QA/QC.</li>
-        <li><strong>2024</strong> — Se constituye ARVEXA Group y el portal 1+4.</li>
-        <li><strong>2025</strong> — Expansión regional y ruta ISO.</li>
-      </ol>
+
+      <div class="timeline-pro" role="list">
+        <article class="ms" role="listitem" aria-label="2016 — Nace Arke.mx">
+          <span class="year-badge">2016</span>
+          <div class="card">
+            <div class="chip">Obra civil & arquitectura</div>
+            <h3 class="title">Nace <em>Arke.mx</em></h3>
+            <p class="desc">Arrancamos operaciones en obra civil, arquitectura y acabados.</p>
+          </div>
+        </article>
+
+        <article class="ms" role="listitem" aria-label="2018 — Carpintería y cocinas">
+          <span class="year-badge">2018</span>
+          <div class="card">
+            <div class="chip">Interiores</div>
+            <h3 class="title">Carpintería & cocinas</h3>
+            <p class="desc">Ampliamos portafolio con carpintería arquitectónica para el sector inmobiliario.</p>
+          </div>
+        </article>
+
+        <article class="ms" role="listitem" aria-label="2019 — Se formaliza Ingeniería Eléctrica de Chihuahua">
+          <span class="year-badge">2019</span>
+          <div class="card">
+            <div class="chip">Eléctrico MT/BT</div>
+            <h3 class="title">Ing. Eléctrica de Chihuahua</h3>
+            <p class="desc">Proyectos de media/baja tensión, tableros, energización y pruebas.</p>
+          </div>
+        </article>
+
+        <article class="ms" role="listitem" aria-label="2021 — Nace Novex">
+          <span class="year-badge">2021</span>
+          <div class="card">
+            <div class="chip">Fire & Security</div>
+            <h3 class="title">Nace <em>Novex</em></h3>
+            <p class="desc">Detección de incendio, CCTV y control de acceso bajo norma NFPA.</p>
+          </div>
+        </article>
+
+        <article class="ms" role="listitem" aria-label="2023 — QA/QC y documentación estándar">
+          <span class="year-badge">2023</span>
+          <div class="card">
+            <div class="chip">Procesos</div>
+            <h3 class="title">QA/QC & documentación</h3>
+            <p class="desc">Integramos procedimientos de calidad, compras y trazabilidad técnica.</p>
+          </div>
+        </article>
+
+        <article class="ms" role="listitem" aria-label="2024 — Se constituye ARVEXA Group">
+          <span class="year-badge">2024</span>
+          <div class="card">
+            <div class="chip">Holding</div>
+            <h3 class="title">ARVEXA Group</h3>
+            <p class="desc">Nace el portal 1+4 con identidad unificada y gobierno de marca.</p>
+          </div>
+        </article>
+
+        <article class="ms" role="listitem" aria-label="2025 — Expansión e ISO">
+          <span class="year-badge">2025</span>
+          <div class="card">
+            <div class="chip">Escala</div>
+            <h3 class="title">Expansión & certificaciones</h3>
+            <p class="desc">Crecimiento regional y ruta de certificaciones (ISO/NOM/NFPA).</p>
+          </div>
+        </article>
+      </div>
     </div>
   </section>
 
@@ -105,33 +167,73 @@
         <p class="muted" style="margin-top:-6px">Cuéntanos qué necesitas. Respuesta en menos de 24h hábiles.</p>
         <form id="rfpForm" novalidate>
           <input type="text" name="_gotcha" autocomplete="off" style="position:absolute;left:-9999px" tabindex="-1" aria-hidden="true">
+
           <div class="row">
-            <div><label for="nombre">Nombre*</label><input id="nombre" name="nombre" required placeholder="Tu nombre completo"><div class="error" data-error-for="nombre">Escribe tu nombre.</div></div>
-            <div><label for="empresa">Empresa</label><input id="empresa" name="empresa" placeholder="Opcional"></div>
+            <div>
+              <label for="nombre">Nombre*</label>
+              <input id="nombre" name="nombre" type="text" required placeholder="Tu nombre completo" autocomplete="name">
+              <div class="error" data-error-for="nombre">Escribe tu nombre.</div>
+            </div>
+            <div>
+              <label for="empresa">Empresa</label>
+              <input id="empresa" name="empresa" type="text" placeholder="Opcional" autocomplete="organization">
+            </div>
           </div>
+
           <div class="row">
-            <div><label for="email">Email*</label><input id="email" name="email" type="email" required placeholder="tucorreo@empresa.com"><div class="error" data-error-for="email">Escribe un correo válido.</div></div>
-            <div><label for="telefono">Teléfono*</label><input id="telefono" name="telefono" required placeholder="+52 ..."><div class="error" data-error-for="telefono">Incluye un teléfono.</div></div>
+            <div>
+              <label for="email">Email*</label>
+              <input id="email" name="email" type="email" required placeholder="tucorreo@empresa.com" autocomplete="email">
+              <div class="error" data-error-for="email">Escribe un correo válido.</div>
+            </div>
+            <div>
+              <label for="telefono">Teléfono*</label>
+              <input id="telefono" name="telefono" type="tel" required placeholder="+52 ..." inputmode="tel" autocomplete="tel"
+                     pattern="^\\+?[0-9\\s\\-().]{7,}$" title="Usa dígitos, espacios o símbolos (+ - ( )).">
+              <div class="error" data-error-for="telefono">Incluye un teléfono.</div>
+            </div>
           </div>
+
           <div class="row">
             <div>
               <label for="subsidiaria">Subsidiaria*</label>
               <select id="subsidiaria" name="subsidiaria" required>
                 <option value="" selected disabled>Selecciona una opción</option>
-                <option>HVAC Chihuahua</option><option>Novex</option><option>Ingeniería Eléctrica de Chihuahua</option><option>Arke.mx</option>
+                <option>HVAC Chihuahua</option>
+                <option>Novex</option>
+                <option>Ingeniería Eléctrica de Chihuahua</option>
+                <option>Arke.mx</option>
               </select>
               <div class="error" data-error-for="subsidiaria">Elige una subsidiaria.</div>
             </div>
-            <div><label for="servicio">Servicio</label><input id="servicio" name="servicio" placeholder="Instalación, mantenimiento, obra civil…"></div>
+            <div>
+              <label for="servicio">Servicio</label>
+              <input id="servicio" name="servicio" type="text" placeholder="Instalación, mantenimiento, obra civil…">
+            </div>
           </div>
+
           <div class="row-1">
-            <div><label for="mensaje">Mensaje*</label><textarea id="mensaje" name="mensaje" rows="5" required placeholder="Describe tu proyecto: ubicación, plazos, alcance…"></textarea><div class="error" data-error-for="mensaje">Cuéntanos brevemente el alcance.</div><p class="help">Puedes adjuntar documentos al responder nuestro email.</p></div>
+            <div>
+              <label for="mensaje">Mensaje*</label>
+              <textarea id="mensaje" name="mensaje" rows="5" required placeholder="Describe tu proyecto: ubicación, plazos, alcance…"></textarea>
+              <div class="error" data-error-for="mensaje">Cuéntanos brevemente el alcance.</div>
+              <p class="help">Puedes adjuntar documentos/imágenes al responder nuestro email de seguimiento.</p>
+            </div>
           </div>
-          <div class="consent"><input id="acepto" name="acepto" type="checkbox" required><label for="acepto">Acepto el tratamiento de datos para fines de contacto y cotización.</label></div>
+
+          <div class="consent">
+            <input id="acepto" name="acepto" type="checkbox" required>
+            <label for="acepto">Acepto el tratamiento de datos para fines de contacto y cotización.</label>
+          </div>
           <div class="error" data-error-for="acepto">Debes aceptar para continuar.</div>
-          <div style="display:flex;gap:10px;align-items:center;margin-top:6px"><button id="sendBtn" class="btn" type="submit">Enviar solicitud</button><span id="formStatus" class="ok">Gracias. Procesando…</span></div>
+
+          <div style="display:flex;gap:10px;align-items:center;margin-top:6px">
+            <button id="sendBtn" class="btn" type="submit">Enviar solicitud</button>
+            <span id="formStatus" class="ok" role="status" aria-live="polite">Gracias. Procesando…</span>
+          </div>
         </form>
       </div>
+
       <aside class="aside">
         <h4>Contacto directo</h4>
         <p class="mini">Email: <a href="mailto:contacto@arvexa.com">contacto@arvexa.com</a></p>
@@ -148,22 +250,20 @@
   </section>
 
   <!-- PREFOOTER -->
-<!-- PREFOOTER (nuevo) -->
-<section class="prefooter" aria-labelledby="prefooter-title">
-  <div class="wrap">
-    <div class="cta-banner">
-      <div>
-        <h2 id="prefooter-title">¿Listo para empezar?</h2>
-        <p>Ingeniería directa. Resultados claros. Hablemos hoy.</p>
-      </div>
-      <div class="cta-actions">
-        <a class="btn" href="#cotizar">Solicitar cotización</a>
-        <a class="btn ghost" href="mailto:contacto@arvexa.com">contacto@arvexa.com</a>
+  <section class="prefooter" aria-labelledby="prefooter-title">
+    <div class="wrap">
+      <div class="cta-banner">
+        <div>
+          <h2 id="prefooter-title">¿Listo para empezar?</h2>
+          <p>Ingeniería directa. Resultados claros. Hablemos hoy.</p>
+        </div>
+        <div class="cta-actions">
+          <a class="btn" href="#cotizar">Solicitar cotización</a>
+          <a class="btn ghost" href="mailto:contacto@arvexa.com">contacto@arvexa.com</a>
+        </div>
       </div>
     </div>
-  </div>
-</section>
-
+  </section>
 
   <!-- FOOTER -->
   <footer class="footer" role="contentinfo">
@@ -205,13 +305,18 @@
     <div class="legal"><div class="wrap"><small>© ARVEXA Group</small><small><a href="#">Privacidad</a> · <a href="#">Términos</a></small></div></div>
   </footer>
 
-  <!-- JS: Tema + Grid + Form -->
+  <!-- JS: Tema + Grid + Form + Timeline auto-scroll (con paseo) -->
   <script>
-    // Tema (persistente)
+    // Tema (persistente + respeta el sistema si no hay preferencia)
     (function(){
       const storageKey='arvexaTheme', root=document.documentElement;
       const saved=localStorage.getItem(storageKey);
-      if(saved) root.setAttribute('data-theme', saved);
+      if (saved) {
+        root.setAttribute('data-theme', saved);
+      } else {
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
+      }
       const btn=document.getElementById('themeToggle'), sun=btn.querySelector('.sun'), moon=btn.querySelector('.moon');
       function updateIcon(){const isDark=root.getAttribute('data-theme')==='dark'; sun.style.display=isDark?'none':'inline'; moon.style.display=isDark?'inline':'none';}
       updateIcon();
@@ -230,24 +335,41 @@
       grid.innerHTML = companies.map(c => `
         <a class="tile minimal" href="${c.href}" aria-label="${c.title} — Entrar">
           <div class="bg" style="background-image:url('${c.img}')"></div>
-          <span class="btn enter">Entrar</span>
+          <span class="btn enter" aria-label="Entrar a ${c.title}">Entrar</span>
           <span class="sr-only">${c.title}</span>
         </a>
       `).join('');
     })();
 
-    // Formulario
+    // Formulario: validación accesible + envío
     (function(){
       const ENDPOINT="https://formspree.io/f/XXXXXXXX"; // <-- Reemplaza con tu ID real
       const form=document.getElementById('rfpForm');
       const sendBtn=document.getElementById('sendBtn');
       const statusEl=document.getElementById('formStatus');
-      function showError(id,show){const el=document.querySelector(`.error[data-error-for="${id}"]`); if(el) el.style.display=show?'block':'none';}
-      form.addEventListener('submit',async(e)=>{e.preventDefault();
-        let valid=true; ['nombre','email','telefono','subsidiaria','mensaje','acepto'].forEach(id=>{const el=document.getElementById(id); const ok=(el.type==='checkbox')?el.checked:!!el.value.trim(); showError(id,!ok); if(!ok) valid=false;});
+
+      function showError(id, show){
+        const el  = document.getElementById(id);
+        const msg = document.querySelector(`.error[data-error-for="${id}"]`);
+        if (msg) msg.style.display = show ? 'block' : 'none';
+        if (el)  el.setAttribute('aria-invalid', show ? 'true' : 'false');
+      }
+
+      form.addEventListener('submit',async(e)=>{
+        e.preventDefault();
+        let valid=true;
+        ['nombre','email','telefono','subsidiaria','mensaje','acepto'].forEach(id=>{
+          const el=document.getElementById(id);
+          const ok=(el.type==='checkbox')?el.checked:!!el.value.trim();
+          showError(id,!ok);
+          if(!ok) valid=false;
+        });
         if(!valid) return;
+
         const data=new FormData(form);
-        sendBtn.disabled=true; statusEl.style.display='inline'; statusEl.textContent='Enviando…';
+        if(sendBtn) sendBtn.disabled=true;
+        if(statusEl){statusEl.style.display='inline'; statusEl.textContent='Enviando…';}
+
         try{
           const fake=!/^https?:\/\//.test(ENDPOINT)||/XXXX/i.test(ENDPOINT);
           if(fake){await new Promise(r=>setTimeout(r,700)); statusEl.textContent='Enviado. Gracias, te contactamos enseguida.'; form.reset(); return;}
@@ -255,8 +377,73 @@
           if(res.ok){statusEl.textContent='Enviado. Gracias, te contactamos enseguida.'; form.reset();}
           else {statusEl.style.display='none'; alert('No se pudo enviar. Intenta de nuevo o escríbenos a contacto@arvexa.com');}
         }catch{statusEl.style.display='none'; alert('Error de red. Intenta más tarde.');}
-        finally{sendBtn.disabled=false;}
+        finally{if(sendBtn) sendBtn.disabled=false;}
       });
+    })();
+
+    // Timeline: auto-scroll al cargar + paseo suave por 2 hitos y stop
+    (function(){
+      const tl = document.querySelector('#historia .timeline-pro');
+      if (!tl) return;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      if (sessionStorage.getItem('timelineAutoScrolled')) return;
+
+      const items = Array.from(tl.querySelectorAll('.ms'));
+      if (!items.length || tl.scrollWidth <= tl.clientWidth) {
+        sessionStorage.setItem('timelineAutoScrolled','1');
+        return;
+      }
+
+      const currentYear = (new Date()).getFullYear();
+      let target = items[0], best = Infinity, idx = 0;
+      items.forEach((it,i) => {
+        const y = parseInt(it.querySelector('.year-badge')?.textContent, 10);
+        if (!isNaN(y)) {
+          const d = Math.abs(y - currentYear);
+          if (d < best) { best = d; target = it; idx = i; }
+        }
+      });
+
+      const cancel = () => sessionStorage.setItem('timelineAutoScrolled','1');
+      ['wheel','touchstart','mousedown','keydown'].forEach(ev =>
+        tl.addEventListener(ev, cancel, { once:true, passive:true })
+      );
+
+      const ease = t => t < .5 ? 2*t*t : -1 + (4-2*t)*t; // quad in-out
+      function smoothScrollTo(left, duration=900){
+        const start = tl.scrollLeft;
+        const change = left - start;
+        const startTime = performance.now();
+        function step(now){
+          if (sessionStorage.getItem('timelineAutoScrolled')) return;
+          const t = Math.min(1, (now - startTime)/duration);
+          tl.scrollLeft = start + change * ease(t);
+          if (t < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      }
+      function centerEl(el){
+        const x = el.offsetLeft - (tl.clientWidth - el.clientWidth)/2;
+        const clamped = Math.max(0, Math.min(x, tl.scrollWidth - tl.clientWidth));
+        smoothScrollTo(clamped, 900);
+      }
+
+      setTimeout(() => {
+        if (sessionStorage.getItem('timelineAutoScrolled')) return;
+        centerEl(target);
+
+        const nextIdx = [idx+1, idx+2].filter(i => i < items.length);
+        let step = 0;
+
+        function panNext(){
+          if (sessionStorage.getItem('timelineAutoScrolled')) return;
+          if (step >= nextIdx.length) { cancel(); return; }
+          const el = items[nextIdx[step++]];
+          setTimeout(() => centerEl(el), 650);
+          setTimeout(panNext, 650 + 950);
+        }
+        setTimeout(panNext, 950);
+      }, 350);
     })();
   </script>
 </body>
