@@ -9,7 +9,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
   <!-- Header -->
   <header>
@@ -40,7 +39,7 @@
     </div>
   </section>
 
-  <!-- Grid de Disciplinas -->
+  <!-- Grid minimal -->
   <main id="subsidiarias" class="section" aria-labelledby="subs-title">
     <h2 id="subs-title" class="sr-only">Subsidiarias del grupo</h2>
     <div id="subsGrid" class="grid" aria-live="polite"></div>
@@ -48,25 +47,21 @@
     <!-- Fallback sin JS -->
     <noscript>
       <div class="grid">
-        <a class="tile" href="/hvac">
+        <a class="tile minimal" href="/hvac" aria-label="HVAC Chihuahua — Entrar">
           <div class="bg" style="background-image:url('/assets/img/hvac.jpg')"></div>
-          <div class="logo-wrap"><svg class="logo-svg"><use href="/assets/logos/logos-sprite.svg#logo-hvac"></use></svg></div>
-          <div class="tile-content"><span class="tag">HVAC & MEP</span><h3>HVAC Chihuahua</h3><p class="muted" style="color:#E5E7EB">Climas que enfrían problemas, no presupuestos.</p><span class="btn">Entrar</span></div>
+          <span class="btn enter">Entrar</span><span class="sr-only">HVAC Chihuahua</span>
         </a>
-        <a class="tile" href="/novex">
+        <a class="tile minimal" href="/novex" aria-label="Novex — Entrar">
           <div class="bg" style="background-image:url('/assets/img/novex.jpg')"></div>
-          <div class="logo-wrap"><svg class="logo-svg"><use href="/assets/logos/logos-sprite.svg#logo-novex"></use></svg></div>
-          <div class="tile-content"><span class="tag">Fire & Security</span><h3>Novex</h3><p class="muted" style="color:#E5E7EB">Protección que cumple norma y salva activos.</p><span class="btn">Entrar</span></div>
+          <span class="btn enter">Entrar</span><span class="sr-only">Novex</span>
         </a>
-        <a class="tile" href="/electrica">
+        <a class="tile minimal" href="/electrica" aria-label="Ingeniería Eléctrica de Chihuahua — Entrar">
           <div class="bg" style="background-image:url('/assets/img/electrica.jpg')"></div>
-          <div class="logo-wrap fallback">IEC</div>
-          <div class="tile-content"><span class="tag">Eléctrico MT/BT</span><h3>Ingeniería Eléctrica de Chihuahua</h3><p class="muted" style="color:#E5E7EB">Potencia estable, proyectos previsibles.</p><span class="btn">Entrar</span></div>
+          <span class="btn enter">Entrar</span><span class="sr-only">Ingeniería Eléctrica de Chihuahua</span>
         </a>
-        <a class="tile" href="/arke">
+        <a class="tile minimal" href="/arke" aria-label="Arke.mx — Entrar">
           <div class="bg" style="background-image:url('/assets/img/arke.jpg')"></div>
-          <div class="logo-wrap"><svg class="logo-svg"><use href="/assets/logos/logos-sprite.svg#logo-arke"></use></svg></div>
-          <div class="tile-content"><span class="tag">Obra Civil & Arquitectura</span><h3>Arke.mx</h3><p class="muted" style="color:#E5E7EB">Espacios que elevan el valor del negocio.</p><span class="btn">Entrar</span></div>
+          <span class="btn enter">Entrar</span><span class="sr-only">Arke.mx</span>
         </a>
       </div>
     </noscript>
@@ -201,7 +196,7 @@
 
   <!-- JS: Tema + Grid + Form -->
   <script>
-    // Persistencia de tema
+    // Tema (persistente)
     (function(){
       const storageKey='arvexaTheme', root=document.documentElement;
       const saved=localStorage.getItem(storageKey);
@@ -212,33 +207,25 @@
       btn.addEventListener('click',()=>{const next=root.getAttribute('data-theme')==='dark'?'light':'dark'; root.setAttribute('data-theme',next); localStorage.setItem(storageKey,next); updateIcon();});
     })();
 
-    // Grid dinámico con logos del sprite
+    // Grid minimal
     (function(){
-      const SPRITE='/assets/logos/logos-sprite.svg';
-      const companies=[
-        {slug:'hvac', title:'HVAC Chihuahua', tag:'HVAC & MEP', img:'/assets/img/hvac.jpg', href:'/hvac', desc:'Climas que enfrían problemas, no presupuestos.', logoId:'logo-hvac'},
-        {slug:'novex', title:'Novex', tag:'Fire & Security', img:'/assets/img/novex.jpg', href:'/novex', desc:'Protección que cumple norma y salva activos.', logoId:'logo-novex'},
-        {slug:'electrica', title:'Ingeniería Eléctrica de Chihuahua', tag:'Eléctrico MT/BT', img:'/assets/img/electrica.jpg', href:'/electrica', desc:'Potencia estable, proyectos previsibles.', logoId:'logo-iec'},
-        {slug:'arke', title:'Arke.mx', tag:'Obra Civil & Arquitectura', img:'/assets/img/arke.jpg', href:'/arke', desc:'Espacios que elevan el valor del negocio.', logoId:'logo-arke'}
+      const companies = [
+        { title:'HVAC Chihuahua', img:'/assets/img/hvac.jpg', href:'/hvac' },
+        { title:'Novex', img:'/assets/img/novex.jpg', href:'/novex' },
+        { title:'Ingeniería Eléctrica de Chihuahua', img:'/assets/img/electrica.jpg', href:'/electrica' },
+        { title:'Arke.mx', img:'/assets/img/arke.jpg', href:'/arke' }
       ];
-      const grid=document.getElementById('subsGrid');
-      grid.innerHTML=companies.map(c=>`
-        <a class="tile" href="${c.href}" aria-label="Entrar a ${c.title}">
+      const grid = document.getElementById('subsGrid');
+      grid.innerHTML = companies.map(c => `
+        <a class="tile minimal" href="${c.href}" aria-label="${c.title} — Entrar">
           <div class="bg" style="background-image:url('${c.img}')"></div>
-          ${c.logoId==='logo-iec'
-            ? `<div class="logo-wrap fallback">IEC</div>`
-            : `<div class="logo-wrap"><svg class="logo-svg" role="img" aria-label="Logo de ${c.title}"><use href="${SPRITE}#${c.logoId}"></use></svg></div>`}
-          <div class="tile-content">
-            <span class="tag">${c.tag}</span>
-            <h3>${c.title}</h3>
-            <p class="muted" style="color:#E5E7EB">${c.desc}</p>
-            <span class="btn">Entrar</span>
-          </div>
+          <span class="btn enter">Entrar</span>
+          <span class="sr-only">${c.title}</span>
         </a>
       `).join('');
     })();
 
-    // Formulario holding
+    // Formulario
     (function(){
       const ENDPOINT="https://formspree.io/f/XXXXXXXX"; // <-- Reemplaza con tu ID real
       const form=document.getElementById('rfpForm');
