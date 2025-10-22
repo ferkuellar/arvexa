@@ -204,12 +204,51 @@ input:focus,select:focus,textarea:focus{border-color:color-mix(in oklab, var(--n
 
 /* ===== Prefooter ===== */
 .prefooter{
-  margin-top:18px; padding:24px 0; border-top:1px solid var(--line);
-  background:linear-gradient(180deg, color-mix(in oklab, var(--bone) 65%, #fff) 0%, var(--paper) 100%);
+  padding:28px 0;
+  border-top:1px solid var(--line);
+  background:none;
 }
-.prefooter .wrap{max-width:var(--max);margin:auto;padding:0 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-.prefooter h2{font-family:"Archivo Black",system-ui;margin:0}
-.prefooter .actions{display:flex;gap:10px}
+.prefooter .wrap{
+  max-width:var(--max);
+  margin:auto;
+  padding:0 18px;
+}
+
+/* Tarjeta CTA */
+.cta-banner{
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  flex-wrap:wrap;
+  padding:24px;
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  background:
+    radial-gradient(600px 220px at 12% -10%, color-mix(in oklab, var(--navy) 10%, transparent), transparent 60%),
+    radial-gradient(500px 200px at 88% -20%, color-mix(in oklab, var(--red) 8%, transparent), transparent 60%),
+    color-mix(in oklab, var(--paper) 98%, var(--bone));
+}
+
+.cta-banner h2{ font-family:"Archivo Black",system-ui; margin:0 0 4px }
+.cta-banner p{ margin:0; color:var(--muted) }
+
+.cta-actions{ display:flex; gap:10px; flex-wrap:wrap }
+
+/* Botón principal ya existe (.btn). Redefinimos el secundario para que se vea pro */
+.btn.ghost{
+  background:var(--paper);
+  border:1px solid var(--line);
+  color:var(--ink);
+  box-shadow:none;
+}
+.btn.ghost:hover{
+  background:color-mix(in oklab, var(--bone) 85%, #fff);
+  filter:none;
+}
+
 
 /* ===== Footer ===== */
 .footer{background:color-mix(in oklab, var(--paper) 96%, var(--bone)); border-top:1px solid var(--line); margin-top:18px}
@@ -278,4 +317,51 @@ html[data-theme="dark"] .sub-hero::after{ background:linear-gradient(180deg, rgb
 }
 @media (prefers-reduced-motion:reduce){
   .tile .bg{transition:none}
+}
+
+
+/* ===== Hero con imagen (sin blur, alto contraste) ===== */
+/* Ajusta la ruta si tu imagen vive en otro lugar */
+.hero.hero-img{
+  background: url('/assets/img/hero.jpg') center / cover no-repeat;
+  position: relative;
+  isolation: isolate;
+}
+
+/* Overlay más oscuro para que el texto siempre se lea */
+.hero.hero-img::after{
+  content:"";
+  position:absolute; inset:0; z-index:0;
+  background:
+    radial-gradient(1100px 420px at 50% -10%, rgba(11,31,59,.12), transparent 60%),
+    linear-gradient(180deg, rgba(0,0,0,.38) 0%, rgba(0,0,0,.62) 72%);
+}
+
+/* Texto del hero en blanco con leve sombra para legibilidad */
+.hero.hero-img .hero-inner{ position:relative; z-index:1 }
+.hero.hero-img h1{
+  color:#ffffff !important;
+  text-shadow:0 2px 8px rgba(0,0,0,.35);
+}
+.hero.hero-img .sub{
+  color:#EAF2F9 !important;
+  text-shadow:0 1px 6px rgba(0,0,0,.3);
+}
+
+/* Botón secundario claro sobre imagen: legible siempre */
+.hero.hero-img .btn.alt{
+  background:#ffffff;
+  color:#0B1F3B;
+  border:1px solid rgba(255,255,255,0);
+  box-shadow:0 8px 20px rgba(0,0,0,.18);
+}
+.hero.hero-img .btn.alt:hover{
+  filter:none;
+  transform:translateY(-1px);
+  box-shadow:0 10px 24px rgba(0,0,0,.22);
+}
+
+/* Parallax simple solo en desktop (opcional) */
+@media (min-width: 900px){
+  .hero.hero-img.hero-parallax{ background-attachment: fixed; }
 }
