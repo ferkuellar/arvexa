@@ -1,11 +1,13 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" data-theme="light">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
   <title>ARVEXA Group — Holding Corporativo</title>
   <meta name="description" content="ARVEXA Group: Construcción · HVAC · Eléctrico · Detección de Incendios">
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -14,12 +16,22 @@
   <!-- Header -->
   <header>
     <div class="navwrap">
-      <div class="brand">ARVEXA Group</div>
+      <a class="brand" href="#hero-title">ARVEXA Group</a>
       <nav class="nav" aria-label="Principal">
         <a href="#subsidiarias">Subsidiarias</a>
         <a href="#quienes">Quiénes somos</a>
         <a href="#historia">Historia</a>
         <a href="#cotizar">Cotizar</a>
+        <button id="themeToggle" class="theme-toggle" aria-label="Cambiar tema" type="button">
+          <!-- Sun -->
+          <svg class="sun" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="currentColor" d="M6.76 4.84l-1.8-1.79L3.17 4.84l1.79 1.79 1.8-1.79zM1 13h3v-2H1v2zm10-9h2V1h-2v3zm7.07 2.05l1.79-1.79-1.79-1.79-1.79 1.79 1.79 1.79zM17 13h3v-2h-3v2zM12 6a6 6 0 100 12A6 6 0 0012 6zm-1 17h2v-3h-2v3zM3.17 19.16l1.79 1.79 1.8-1.79-1.8-1.79-1.79 1.79zM18.36 17.37l1.79 1.79 1.79-1.79-1.79-1.79-1.79 1.79z"/>
+          </svg>
+          <!-- Moon -->
+          <svg class="moon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="display:none">
+            <path fill="currentColor" d="M20.742 13.045A8.5 8.5 0 1111.05 3.258a7 7 0 109.692 9.787z"/>
+          </svg>
+        </button>
       </nav>
     </div>
   </header>
@@ -36,57 +48,39 @@
     </div>
   </section>
 
-  <!-- Grid de Disciplinas -->
+  <!-- Grid de Disciplinas (dinámico) -->
   <main id="subsidiarias" class="section" aria-labelledby="subs-title">
     <h2 id="subs-title" class="sr-only">Subsidiarias del grupo</h2>
-    <div class="grid">
-      <!-- HVAC Chihuahua -->
-      <a class="tile" href="/hvac" aria-label="Entrar a HVAC Chihuahua">
-        <div class="bg" style="background-image:url('/assets/img/hvac.jpg')"></div>
-        <div class="tile-content">
-          <span class="tag">HVAC & MEP</span>
-          <h3>HVAC Chihuahua</h3>
-          <p class="muted" style="color:#E5E7EB">Climas que enfrían problemas, no presupuestos.</p>
-          <span class="btn">Entrar</span>
-        </div>
-      </a>
+    <div id="subsGrid" class="grid" role="region" aria-live="polite" aria-label="Listado de subsidiarias"></div>
 
-      <!-- Novex -->
-      <a class="tile" href="/novex" aria-label="Entrar a Novex">
-        <div class="bg" style="background-image:url('/assets/img/novex.jpg')"></div>
-        <div class="tile-content">
-          <span class="tag">Fire & Security</span>
-          <h3>Novex</h3>
-          <p class="muted" style="color:#E5E7EB">Protección que cumple norma y salva activos.</p>
-          <span class="btn">Entrar</span>
-        </div>
-      </a>
-
-      <!-- Ingeniería Eléctrica de Chihuahua -->
-      <a class="tile" href="/electrica" aria-label="Entrar a Ingeniería Eléctrica de Chihuahua">
-        <div class="bg" style="background-image:url('/assets/img/electrica.jpg')"></div>
-        <div class="tile-content">
-          <span class="tag">Eléctrico MT/BT</span>
-          <h3>Ingeniería Eléctrica de Chihuahua</h3>
-          <p class="muted" style="color:#E5E7EB">Potencia estable, proyectos previsibles.</p>
-          <span class="btn">Entrar</span>
-        </div>
-      </a>
-
-      <!-- Arke.mx -->
-      <a class="tile" href="/arke" aria-label="Entrar a Arke.mx">
-        <div class="bg" style="background-image:url('/assets/img/arke.jpg')"></div>
-        <div class="tile-content">
-          <span class="tag">Obra Civil & Arquitectura</span>
-          <h3>Arke.mx</h3>
-          <p class="muted" style="color:#E5E7EB">Espacios que elevan el valor del negocio.</p>
-          <span class="btn">Entrar</span>
-        </div>
-      </a>
-    </div>
+    <!-- Fallback si no hay JS -->
+    <noscript>
+      <div class="grid">
+        <a class="tile" href="/hvac" aria-label="Entrar a HVAC Chihuahua">
+          <div class="bg" style="background-image:url('/assets/img/hvac_Chihuahua.jpg')"></div>
+          <div class="logo-wrap"><img src="/assets/logos/hvac_chihuahua.jpg" alt="Logo de HVAC Chihuahua"></div>
+          <div class="tile-content"><span class="tag">HVAC & MEP</span><h3>HVAC Chihuahua</h3><p class="muted" style="color:#E5E7EB">Climas que enfrían problemas, no presupuestos.</p><span class="btn">Entrar</span></div>
+        </a>
+        <a class="tile" href="/novex" aria-label="Entrar a Novex">
+          <div class="bg" style="background-image:url('/assets/img/novex.jpg')"></div>
+          <div class="logo-wrap"><img src="/assets/logos/novex.jpg" alt="Logo de Novex"></div>
+          <div class="tile-content"><span class="tag">Fire & Security</span><h3>Novex</h3><p class="muted" style="color:#E5E7EB">Protección que cumple norma y salva activos.</p><span class="btn">Entrar</span></div>
+        </a>
+        <a class="tile" href="/electrica" aria-label="Entrar a Ingeniería Eléctrica de Chihuahua">
+          <div class="bg" style="background-image:url('/assets/img/electrica.jpg')"></div>
+          <div class="logo-wrap fallback">IEC</div>
+          <div class="tile-content"><span class="tag">Eléctrico MT/BT</span><h3>Ingeniería Eléctrica de Chihuahua</h3><p class="muted" style="color:#E5E7EB">Potencia estable, proyectos previsibles.</p><span class="btn">Entrar</span></div>
+        </a>
+        <a class="tile" href="/arke" aria-label="Entrar a Arke.mx">
+          <div class="bg" style="background-image:url('/assets/img/arke.jpg')"></div>
+          <div class="logo-wrap"><img src="/assets/logos/arke.jpg" alt="Logo de Arke.mx"></div>
+          <div class="tile-content"><span class="tag">Obra Civil & Arquitectura</span><h3>Arke.mx</h3><p class="muted" style="color:#E5E7EB">Espacios que elevan el valor del negocio.</p><span class="btn">Entrar</span></div>
+        </a>
+      </div>
+    </noscript>
   </main>
 
-  <!-- Quiénes somos (adaptado ARVEXA) -->
+  <!-- Quiénes somos -->
   <section id="quienes" class="section">
     <div class="block" aria-labelledby="qs-title">
       <h2 id="qs-title">Quiénes somos</h2>
@@ -100,17 +94,15 @@
       </p>
 
       <p class="muted">
-        A lo largo de estas décadas, desarrollamos <strong>métodos y procedimientos operativos</strong> que elevan la <strong>eficacia y productividad</strong>
-        de nuestros equipos en obra y posventa: <strong>QA/QC</strong>, trazabilidad técnica, documentación impecable y <strong>seguridad HSEC</strong>.
-        Nuestra <strong>solidez financiera</strong> y un <strong>equipo técnico altamente capacitado</strong> nos permiten cumplir <strong>plazos y presupuesto</strong>
-        en proyectos de alta exigencia.
+        Desarrollamos <strong>métodos y procedimientos</strong> para elevar la <strong>eficacia y productividad</strong> de obra y posventa:
+        <strong>QA/QC</strong>, trazabilidad técnica, documentación impecable y <strong>seguridad HSEC</strong>.
+        Nuestra <strong>solidez financiera</strong> y un <strong>equipo técnico altamente capacitado</strong> nos permiten cumplir <strong>plazos y presupuesto</strong>.
       </p>
 
       <p class="muted">
         En <strong>2018</strong>, ampliamos el portafolio desde <em>Arke.mx</em> para incluir
-        <strong>carpintería arquitectónica y cocinas integrales</strong>, especialmente para el sector inmobiliario y comercial.
-        Esta evolución refleja nuestra forma de operar: <strong>adaptarnos al mercado</strong> y ofrecer <strong>soluciones integrales</strong> que equilibran
-        <strong>funcionalidad, diseño y calidad</strong>.
+        <strong>carpintería arquitectónica y cocinas integrales</strong> para el sector inmobiliario y comercial.
+        Así respondemos al mercado con <strong>soluciones integrales</strong> que equilibran <strong>funcionalidad, diseño y calidad</strong>.
       </p>
 
       <h3>Nuestras empresas</h3>
@@ -132,26 +124,25 @@
     </div>
   </section>
 
-  <!-- Historia (adaptado ARVEXA) -->
+  <!-- Historia -->
   <section id="historia" class="section">
     <div class="block" aria-labelledby="hist-title">
       <h2 id="hist-title">Historia</h2>
       <ol class="timeline muted">
         <li><strong>2016</strong> — Nace <em>Arke.mx</em> (obra civil y arquitectura).</li>
-        <li><strong>2018</strong> — <em>Arke.mx</em> amplía portafolio a <strong>carpintería arquitectónica y cocinas integrales</strong> para inmobiliario/comercial.</li>
+        <li><strong>2018</strong> — <em>Arke.mx</em> amplía portafolio a <strong>carpintería arquitectónica y cocinas integrales</strong>.</li>
         <li><strong>2019</strong> — Se formaliza <em>Ingeniería Eléctrica de Chihuahua</em> (MT/BT, tableros, energización, pruebas).</li>
         <li><strong>2021</strong> — Nace <em>Novex</em> (detección de incendio, CCTV, control de acceso, redes).</li>
-        <li><strong>2023</strong> — Integración operativa de procesos <strong>QA/QC</strong>, compras y documentación estándar.</li>
+        <li><strong>2023</strong> — Integración de procesos <strong>QA/QC</strong>, compras y documentación estándar.</li>
         <li><strong>2024</strong> — Se constituye el holding <strong>ARVEXA Group</strong> y se lanza el portal 1+4.</li>
         <li><strong>2025</strong> — Expansión regional y ruta de certificaciones (ISO/NOM/NFPA).</li>
       </ol>
     </div>
   </section>
 
-  <!-- COTIZAR (Formulario incrustado) -->
+  <!-- COTIZAR (Formulario) -->
   <section id="cotizar" class="section">
     <div class="form-wrap">
-      <!-- Form -->
       <div class="form-card" aria-labelledby="cotizar-title">
         <h3 id="cotizar-title">Solicitar cotización</h3>
         <p class="muted" style="margin-top:-6px">Cuéntanos qué necesitas. Respuesta en menos de 24h hábiles.</p>
@@ -162,24 +153,24 @@
           <div class="row">
             <div>
               <label for="nombre">Nombre*</label>
-              <input id="nombre" name="nombre" type="text" required placeholder="Tu nombre completo">
+              <input id="nombre" name="nombre" type="text" required placeholder="Tu nombre completo" autocomplete="name" />
               <div class="error" data-error-for="nombre">Escribe tu nombre.</div>
             </div>
             <div>
               <label for="empresa">Empresa</label>
-              <input id="empresa" name="empresa" type="text" placeholder="Opcional">
+              <input id="empresa" name="empresa" type="text" placeholder="Opcional" autocomplete="organization" />
             </div>
           </div>
 
           <div class="row">
             <div>
               <label for="email">Email*</label>
-              <input id="email" name="email" type="email" required placeholder="tucorreo@empresa.com">
+              <input id="email" name="email" type="email" required placeholder="tucorreo@empresa.com" autocomplete="email" />
               <div class="error" data-error-for="email">Escribe un correo válido.</div>
             </div>
             <div>
               <label for="telefono">Teléfono*</label>
-              <input id="telefono" name="telefono" type="tel" required placeholder="+52 ...">
+              <input id="telefono" name="telefono" type="tel" required placeholder="+52 ..." autocomplete="tel" inputmode="tel" />
               <div class="error" data-error-for="telefono">Incluye un teléfono.</div>
             </div>
           </div>
@@ -198,7 +189,7 @@
             </div>
             <div>
               <label for="servicio">Servicio</label>
-              <input id="servicio" name="servicio" type="text" placeholder="Ej. instalación, mantenimiento, obra civil…">
+              <input id="servicio" name="servicio" type="text" placeholder="Ej. instalación, mantenimiento, obra civil…" />
             </div>
           </div>
 
@@ -212,7 +203,7 @@
           </div>
 
           <div class="consent">
-            <input id="acepto" name="acepto" type="checkbox" required>
+            <input id="acepto" name="acepto" type="checkbox" required />
             <label for="acepto">Acepto el tratamiento de datos para fines de contacto y cotización.</label>
           </div>
           <div class="error" data-error-for="acepto">Debes aceptar para continuar.</div>
@@ -224,12 +215,11 @@
         </form>
       </div>
 
-      <!-- Aside info -->
       <aside class="aside">
         <h4>Contacto directo</h4>
         <p class="mini">Prefieres correo/llamada:</p>
-        <p><strong>Email:</strong> contacto@arvexa.com</p>
-        <p><strong>Tel:</strong> +52 (614) 000 0000</p>
+        <p><strong>Email:</strong> <a href="mailto:contacto@arvexa.com">contacto@arvexa.com</a></p>
+        <p><strong>Tel:</strong> <a href="tel:+526140000000">+52 (614) 000 0000</a></p>
         <hr style="border-color:#E5E7EB">
         <h4>¿Qué ayuda a cotizar más rápido?</h4>
         <ul class="mini">
@@ -242,7 +232,7 @@
     </div>
   </section>
 
-  <!-- PREFOOTER (claro) -->
+  <!-- PREFOOTER -->
   <section class="prefooter" aria-labelledby="prefooter-title">
     <div class="wrap">
       <div>
@@ -250,13 +240,13 @@
         <p>Ingeniería directa. Resultados claros. Hablemos hoy.</p>
       </div>
       <div class="actions">
-        <a class="btn" href="#cotizar" aria-label="Ir al formulario de cotización">Solicitar cotización</a>
-        <a class="btn ghost" href="mailto:contacto@arvexa.com" aria-label="Enviar correo a ARVEXA">contacto@arvexa.com</a>
+        <a class="btn" href="#cotizar">Solicitar cotización</a>
+        <a class="btn ghost" href="mailto:contacto@arvexa.com">contacto@arvexa.com</a>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER pro (oscuro) -->
+  <!-- FOOTER -->
   <footer class="footer" role="contentinfo">
     <div class="footer-grid">
       <div class="col brandcol">
@@ -265,19 +255,13 @@
         <p class="about">Un grupo, cuatro especialidades y un solo estándar de calidad. Cumplimos plazos, normas y presupuestos.</p>
         <div class="social" aria-label="Redes sociales">
           <a href="#" aria-label="LinkedIn" class="ico" title="LinkedIn">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8h4V24h-4V8zM8 8h3.8v2.2h.05c.53-1 1.83-2.2 3.77-2.2 4.04 0 4.78 2.66 4.78 6.12V24h-4v-6.9c0-1.64-.03-3.75-2.28-3.75-2.28 0-2.63 1.78-2.63 3.63V24H8V8z" fill="currentColor"/>
-            </svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8h4V24h-4V8zM8 8h3.8v2.2h.05c.53-1 1.83-2.2 3.77-2.2 4.04 0 4.78 2.66 4.78 6.12V24h-4v-6.9c0-1.64-.03-3.75-2.28-3.75-2.28 0-2.63 1.78-2.63 3.63V24H8V8z" fill="currentColor"/></svg>
           </a>
           <a href="#" aria-label="Facebook" class="ico" title="Facebook">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M15 3h3V0h-3c-3.31 0-6 2.69-6 6v3H6v3h3v12h3V12h3l1-3h-4V6c0-1.1.9-2 2-2z" fill="currentColor"/>
-            </svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 3h3V0h-3c-3.31 0-6 2.69-6 6v3H6v3h3v12h3V12h3l1-3h-4V6c0-1.1.9-2 2-2z" fill="currentColor"/></svg>
           </a>
           <a href="#" aria-label="X/Twitter" class="ico" title="X">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M17.5 3H21l-7.5 8.54L22.5 21H15l-4.8-5.67L4.5 21H1l8.3-9.46L1.5 3h7.5l4.5 5.31L17.5 3z" fill="currentColor"/>
-            </svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M17.5 3H21l-7.5 8.54L22.5 21H15l-4.8-5.67L4.5 21H1l8.3-9.46L1.5 3h7.5l4.5 5.31L17.5 3z" fill="currentColor"/></svg>
           </a>
         </div>
       </div>
@@ -305,30 +289,10 @@
       <div class="col">
         <h4>Contacto</h4>
         <ul class="contact">
-          <li>
-            <span class="ico">
-              <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5Z"/></svg>
-            </span>
-            <span>Chihuahua, MX · Oficinas del norte</span>
-          </li>
-          <li>
-            <span class="ico">
-              <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2c.3-.3.8-.4 1.2-.2 1.3.5 2.7.8 4.2.8.7 0 1.2.5 1.2 1.2V21c0 .7-.5 1.2-1.2 1.2A18 18 0 0 1 3 4.2C3 3.5 3.5 3 4.2 3H7c.7 0 1.2.5 1.2 1.2 0 1.5.3 2.9.8 4.2.1.4 0 .9-.3 1.2l-2.1 2.2Z"/></svg>
-            </span>
-            <a href="tel:+526140000000">+52 (614) 000 0000</a>
-          </li>
-          <li>
-            <span class="ico">
-              <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5L4 8V6l8 5 8-5v2Z"/></svg>
-            </span>
-            <a href="mailto:contacto@arvexa.com">contacto@arvexa.com</a>
-          </li>
-          <li>
-            <span class="ico">
-              <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 10 10A10.011 10.011 0 0 0 12 2Zm1 11h-4V7h2v4h2v2Z"/></svg>
-            </span>
-            <span>L–V 9:00–18:00 (GMT-6)</span>
-          </li>
+          <li><span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5Z"/></svg></span><span>Chihuahua, MX · Oficinas del norte</span></li>
+          <li><span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2c.3-.3.8-.4 1.2-.2 1.3.5 2.7.8 4.2.8.7 0 1.2.5 1.2 1.2V21c0 .7-.5 1.2-1.2 1.2A18 18 0 0 1 3 4.2C3 3.5 3.5 3 4.2 3H7c.7 0 1.2.5 1.2 1.2 0 1.5.3 2.9.8 4.2.1.4 0 .9-.3 1.2l-2.1 2.2Z"/></svg></span><a href="tel:+526140000000">+52 (614) 000 0000</a></li>
+          <li><span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5L4 8V6l8 5 8-5v2Z"/></svg></span><a href="mailto:contacto@arvexa.com">contacto@arvexa.com</a></li>
+          <li><span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 10 10A10.011 10.011 0 0 0 12 2Zm1 11h-4V7h2v4h2v2Z"/></svg></span><span>L–V 9:00–18:00 (GMT-6)</span></li>
         </ul>
         <div class="mini-note">Tiempo de respuesta típico: &lt; 24h hábiles.</div>
       </div>
@@ -342,71 +306,122 @@
     </div>
   </footer>
 
-  <!-- JS: Validación + envío AJAX -->
+  <!-- JS: Tema + Grid dinámico + Form -->
   <script>
-    // Reemplaza por tu endpoint (Formspree, backend propio, etc.)
-    const ENDPOINT = "https://formspree.io/f/XXXXXXXX"; // <- PON TU ID
-    const form = document.getElementById('rfpForm');
-    const sendBtn = document.getElementById('sendBtn');
-    const statusEl = document.getElementById('formStatus');
+    // --------- Tema (oscuro/claro) con persistencia ----------
+    (function(){
+      const storageKey = 'arvexaTheme';
+      const root = document.documentElement;
+      const saved = localStorage.getItem(storageKey);
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      root.setAttribute('data-theme', saved || (prefersDark ? 'dark' : 'light'));
 
-    function showError(id, show){
-      const el = document.querySelector(`.error[data-error-for="${id}"]`);
-      if(!el) return;
-      el.style.display = show ? 'block' : 'none';
-    }
+      const btn = document.getElementById('themeToggle');
+      if (!btn) return;
+      const sun = btn.querySelector('.sun');
+      const moon = btn.querySelector('.moon');
 
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      // Validación básica
-      let valid = true;
-      const required = ['nombre','email','telefono','subsidiaria','mensaje','acepto'];
-      required.forEach(id => {
-        const el = document.getElementById(id);
-        const ok = (el.type === 'checkbox') ? el.checked : !!el.value.trim();
-        showError(id, !ok);
-        if(!ok) valid = false;
-      });
-      if(!valid) return;
-
-      // Construye payload
-      const data = new FormData(form);
-
-      // Estado UI
-      sendBtn.disabled = true;
-      statusEl.style.display = 'inline';
-      statusEl.textContent = 'Enviando…';
-
-      try{
-        // Si no configuraste ENDPOINT, simula éxito
-        if(!ENDPOINT.includes('http')){
-          await new Promise(r=>setTimeout(r,800));
-          statusEl.textContent = 'Enviado. Gracias, te contactamos enseguida.';
-          form.reset(); sendBtn.disabled = false;
-          return;
+      function updateIcon(){
+        const isDark = root.getAttribute('data-theme') === 'dark';
+        if (sun && moon) {
+          sun.style.display = isDark ? 'none' : 'inline';
+          moon.style.display = isDark ? 'inline' : 'none';
         }
-
-        const res = await fetch(ENDPOINT, {
-          method:'POST',
-          headers:{ 'Accept':'application/json' },
-          body: data
-        });
-
-        if(res.ok){
-          statusEl.textContent = 'Enviado. Gracias, te contactamos enseguida.';
-          form.reset();
-        } else {
-          statusEl.style.display = 'none';
-          alert('No se pudo enviar. Intenta de nuevo o escríbenos a contacto@arvexa.com');
-        }
-      } catch(err){
-        statusEl.style.display = 'none';
-        alert('Error de red. Intenta más tarde.');
-      } finally{
-        sendBtn.disabled = false;
       }
-    });
+      updateIcon();
+
+      btn.addEventListener('click', () => {
+        const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem(storageKey, next);
+        updateIcon();
+      });
+    })();
+
+    // --------- Grid dinámico de subsidiarias (con LOGOS + fallback IEC) ----------
+    (function(){
+      const companies = [
+        { slug:'hvac', title:'HVAC Chihuahua', tag:'HVAC & MEP', img:'/assets/img/hvac.jpg', href:'/hvac', desc:'Climas que enfrían problemas, no presupuestos.', logo:'/assets/logos/hvac_chihuahua.jpg' },
+        { slug:'novex', title:'Novex', tag:'Fire & Security', img:'/assets/img/novex.jpg', href:'/novex', desc:'Protección que cumple norma y salva activos.', logo:'/assets/logos/novex.jpg' },
+        { slug:'electrica', title:'Ingeniería Eléctrica de Chihuahua', tag:'Eléctrico MT/BT', img:'/assets/img/electrica.jpg', href:'/electrica', desc:'Potencia estable, proyectos previsibles.', logo:'', initials:'IEC' },
+        { slug:'arke', title:'Arke.mx', tag:'Obra Civil & Arquitectura', img:'/assets/img/arke.jpg', href:'/arke', desc:'Espacios que elevan el valor del negocio.', logo:'/assets/logos/arke.jpg' }
+      ];
+      const grid = document.getElementById('subsGrid');
+      if (!grid) return;
+      grid.innerHTML = companies.map(c => `
+        <a class="tile" href="${c.href}" aria-label="Entrar a ${c.title}">
+          <div class="bg" style="background-image:url('${c.img}')"></div>
+          ${c.logo ? `
+            <div class="logo-wrap"><img src="${c.logo}" alt="Logo de ${c.title}" loading="lazy" decoding="async" /></div>
+          ` : `
+            <div class="logo-wrap fallback" aria-hidden="true">${(c.initials||'').toUpperCase()}</div>
+          `}
+          <div class="tile-content">
+            <span class="tag">${c.tag}</span>
+            <h3>${c.title}</h3>
+            <p class="muted" style="color:#E5E7EB">${c.desc}</p>
+            <span class="btn">Entrar</span>
+          </div>
+        </a>
+      `).join('');
+    })();
+
+    // --------- Formulario: Validación + envío ----------
+    (function(){
+      const ENDPOINT = "https://formspree.io/f/XXXXXXXX"; // <- PON TU ID REAL
+      const form = document.getElementById('rfpForm');
+      if (!form) return;
+
+      const sendBtn = document.getElementById('sendBtn');
+      const statusEl = document.getElementById('formStatus');
+
+      function showError(id, show){
+        const el = document.querySelector(`.error[data-error-for="${id}"]`);
+        if(!el) return;
+        el.style.display = show ? 'block' : 'none';
+      }
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        let valid = true;
+        const required = ['nombre','email','telefono','subsidiaria','mensaje','acepto'];
+        required.forEach(id => {
+          const el = document.getElementById(id);
+          const ok = (el && el.type === 'checkbox') ? el.checked : !!(el && el.value.trim());
+          showError(id, !ok);
+          if(!ok) valid = false;
+        });
+        if(!valid) return;
+
+        const data = new FormData(form);
+        if (sendBtn) sendBtn.disabled = true;
+        if (statusEl) { statusEl.style.display = 'inline'; statusEl.textContent = 'Enviando…'; }
+
+        try{
+          const endpointLooksFake = !ENDPOINT || !/^https?:\/\//.test(ENDPOINT) || /XXXXXX/i.test(ENDPOINT);
+          if (endpointLooksFake){
+            await new Promise(r=>setTimeout(r,800));
+            if (statusEl) statusEl.textContent = 'Enviado. Gracias, te contactamos enseguida.';
+            form.reset(); if (sendBtn) sendBtn.disabled = false;
+            return;
+          }
+
+          const res = await fetch(ENDPOINT, { method:'POST', headers:{ 'Accept':'application/json' }, body: data });
+          if(res.ok){
+            if (statusEl) statusEl.textContent = 'Enviado. Gracias, te contactamos enseguida.';
+            form.reset();
+          } else {
+            if (statusEl) statusEl.style.display = 'none';
+            alert('No se pudo enviar. Intenta de nuevo o escríbenos a contacto@arvexa.com');
+          }
+        } catch(err){
+          if (statusEl) statusEl.style.display = 'none';
+          alert('Error de red. Intenta más tarde.');
+        } finally{
+          if (sendBtn) sendBtn.disabled = false;
+        }
+      });
+    })();
   </script>
 </body>
 </html>
