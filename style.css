@@ -564,29 +564,3 @@ html[data-theme="dark"] .cta-banner{
 
 .dark .logo img{ filter: invert(0) brightness(1.1) contrast(1.1); }
 
-:root{
-  --logo-h: clamp(64px, 9vw, 110px);   /* ↑ altura = logos más grandes */
-  --gap: clamp(0.6rem, 1.6vw, 1.4rem); /* ↓ separación entre logos     */
-  --speed: 10s;                        /* ajusta la velocidad del loop */
-}
-
-/* Track + slides */
-.clients .track{ animation: clients-scroll var(--speed) linear infinite; }
-.clients .slide{
-  gap: var(--gap);
-  padding-inline: clamp(8px, 1.2vw, 16px); /* menos padding lateral */
-}
-/* Gutters del contenedor */
-.clients .clients-wrap{
-  padding-inline: clamp(8px, 1.5vw, 16px);
-}
-
-/* Imágenes: ocupan la altura asignada y no limitamos ancho artificialmente */
-.clients .logo{ height: var(--logo-h); }
-.clients .logo img{
-  height: var(--logo-h);
-  width: auto;
-  object-fit: contain;
-  max-width: none;           /* elimina topes como 240px que achican algunos */
-  -webkit-user-drag: none;
-}
