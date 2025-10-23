@@ -351,18 +351,19 @@
       btn.addEventListener('click',()=>{const next=root.getAttribute('data-theme')==='dark'?'light':'dark'; root.setAttribute('data-theme',next); localStorage.setItem(storageKey,next); updateIcon();});
     })();
 
-    // Grid minimal (un click → landing de cada subsidiaria)
+    // Grid minimal con icono (un click → landing de cada subsidiaria)
     (function(){
       const companies = [
-        { title:'HVAC Chihuahua', img:'/assets/img/hvac.jpg', href:'/hvac' },
-        { title:'Novex', img:'/assets/img/novex.jpg', href:'/novex' },
-        { title:'Ingeniería Eléctrica de Chihuahua', img:'/assets/img/electrica.jpg', href:'/electrica' },
-        { title:'Arke.mx', img:'/assets/img/arke.jpg', href:'/arke' }
+        { title:'HVAC Chihuahua', img:'/assets/img/hvac.jpg', href:'/hvac', icon:'/assets/img/icons/hvac.svg' },
+        { title:'Novex', img:'/assets/img/novex.jpg', href:'/novex', icon:'/assets/img/icons/novex.svg' },
+        { title:'Ingeniería Eléctrica de Chihuahua', img:'/assets/img/electrica.jpg', href:'/electrica', icon:'/assets/img/icons/electrica.svg' },
+        { title:'Arke.mx', img:'/assets/img/arke.jpg', href:'/arke', icon:'/assets/img/icons/arke.svg' }
       ];
       const grid = document.getElementById('subsGrid');
       grid.innerHTML = companies.map(c => `
         <a class="tile minimal" href="${c.href}" aria-label="${c.title} — Entrar">
           <div class="bg" style="background-image:url('${c.img}')"></div>
+          ${c.icon ? `<img class="subs-icon" src="${c.icon}" alt="${c.title}">` : ``}
           <span class="btn enter" aria-label="Entrar a ${c.title}">Entrar</span>
           <span class="sr-only">${c.title}</span>
         </a>
