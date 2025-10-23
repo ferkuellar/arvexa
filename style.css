@@ -185,27 +185,82 @@ input:focus,select:focus,textarea:focus{border-color:color-mix(in oklab, var(--n
 .aside .mini{color:var(--muted);font-size:13px}
 
 /* ===== Cinta de clientes (marquee pro, centrada) ===== */
-.clients .clients-wrap{ position:relative; overflow:hidden; border-radius:var(--radius); background:var(--paper) }
-:root{ --logo-h: 34px; --gap: 48px; --speed: 42s; }
-.clients .track{ display:flex; width:max-content; animation: clients-scroll var(--speed) linear infinite; will-change: transform; padding: 16px 0 }
+:root{
+  /* fallbacks para que no se caiga si no definiste estas vars en otro lado */
+  --paper: #fff;
+  --radius: 16px;
+  --max: 1200px;
+
+  --logo-h: clamp(42px, 7vw, 72px);
+  --gap: clamp(1.2rem, 3.5vw, 3rem);
+  --speed: 38s; /* ↑ más grande = más lento */
+}
+
+.clients .clients-wrap{
+  position:relative;
+  overflow:hidden;
+  border-radius:var(--radius, 16px);
+  background:var(--paper, #fff);
+  padding-inline: 28px;         /* gutters */
+  margin-inline: auto;
+  max-width: calc(var(--max, 1200px) + 56px);
+}
+
+.clients .track{
+  display:flex;
+  width:max-content;            /* mide lo que necesita */
+  animation: clients-scroll var(--speed) linear infinite;
+  will-change: transform;
+  padding: 16px 0;
+  transform: translateZ(0);     /* safari/edge jitter fix */
+}
 .clients .clients-wrap:hover .track{ animation-play-state: paused }
-.clients .slide{ display:flex; align-items:center; gap:var(--gap); padding: 0 24px }
-.clients .logo{ display:inline-flex; align-items:center; justify-content:center; height:var(--logo-h); line-height:0; opacity:.95 }
-.clients .logo img{ height:var(--logo-h); width:auto; filter: grayscale(100%) contrast(1.05) opacity(.85); transition: filter .2s ease, transform .2s ease, opacity .2s ease }
-.clients .logo:hover img,.clients .logo:focus img{ filter:none; opacity:1; transform:translateY(-1px) }
-/* Centrado y gutters */
-.clients .clients-block{ padding: 18px }
-.clients .clients-wrap{ padding-inline: 28px; margin-inline: auto; max-width: calc(var(--max) + 56px) }
-.clients .slide{ padding-inline: 32px }
+
+.clients .slide{
+  display:flex; align-items:center;
+  gap:var(--gap);
+  padding-inline: 32px;
+}
+
+.clients .logo{
+  display:inline-flex; align-items:center; justify-content:center;
+  height:var(--logo-h); line-height:0; opacity:.98;
+}
+.clients .logo img{
+  display:block;
+  height:var(--logo-h);
+  width:auto;
+  max-width: clamp(90px, 16vw, 240px);
+  object-fit:contain;
+  -webkit-user-drag: none;
+  filter: grayscale(.05) contrast(1.05);
+  opacity:.98;
+  transition: filter .2s ease, transform .2s ease, opacity .2s ease;
+}
+.clients .logo:hover img,
+.clients .logo:focus img{
+  filter:none; opacity:1; transform:translateY(-1px);
+}
+
+/* Centrado y gutters en desktop */
 @media (min-width: 1024px){
-  .clients .clients-wrap{ padding-inline: 48px; max-width: calc(var(--max) + 96px) }
+  .clients .clients-wrap{ padding-inline: 48px; max-width: calc(var(--max, 1200px) + 96px) }
   .clients .slide{ padding-inline: 48px }
 }
-.clients .fade{ position:absolute; top:0; bottom:0; width:80px; pointer-events:none; z-index:2 }
-.clients .fade.left{ left:0; background:linear-gradient(90deg, var(--paper), transparent) }
-.clients .fade.right{ right:0; background:linear-gradient(270deg, var(--paper), transparent) }
+
+/* Fades laterales */
+.clients .fade{
+  position:absolute; top:0; bottom:0; width:80px;
+  pointer-events:none; z-index:2;
+}
+.clients .fade.left{  left:0;  background:linear-gradient(90deg, var(--paper, #fff), transparent) }
+.clients .fade.right{ right:0; background:linear-gradient(270deg, var(--paper, #fff), transparent) }
+
+/* Animación para 2 slides idénticos */
 @keyframes clients-scroll{ from { transform: translateX(0) } to { transform: translateX(-50%) } }
-@media (prefers-reduced-motion: reduce){ .clients .track{ animation: none } }
+
+@media (prefers-reduced-motion: reduce){ .clients .track{ animation:none } }
+
 
 /* ===== Hero con imagen (sin blur) + responsive real ===== */
 .hero.hero-img{
@@ -474,3 +529,37 @@ html[data-theme="dark"] .cta-banner{
 @media (max-width:640px){
   .footer .footer-grid{ grid-template-columns:1fr; }
 }
+
+.clients-wrap{
+  --h: clamp(42px, 7vw, 72px);
+  --gap: clamp(1.2rem, 3.5vw, 3rem);
+  --speed: 38s;
+  position: relative; overflow: hidden; width: 100%;
+  padding-block: clamp(8px, 2vw, 16px);
+  display: grid; place-items: center;
+}
+.track{ display:flex; width:max-content; animation: marquee var(--speed) linear infinite; }
+.track:hover{ animation-play-state: paused; }
+
+.slide{ display:flex; align-items:center; gap:var(--gap); padding-inline:var(--gap); }
+
+.logo{ display:inline-flex; align-items:center; justify-content:center; height:var(--h); }
+.logo img{
+  display:block; height:var(--h); width:auto; object-fit:contain;
+  max-width: clamp(80px, 15vw, 220px);
+  filter: grayscale(0.05) contrast(1.05);
+  opacity:.98; transition: transform .2s ease, filter .2s ease, opacity .2s ease;
+}
+.logo:hover img{ transform: translateY(-2px); filter:none; opacity:1; }
+
+/* fades laterales */
+.fade{ position:absolute; inset:0 auto; width:min(10%,120px); pointer-events:none; z-index:1; }
+.fade.left{ left:0; background:linear-gradient(to right, rgba(0,0,0,.9), rgba(0,0,0,0)); }
+.fade.right{ right:0; background:linear-gradient(to left, rgba(0,0,0,.9), rgba(0,0,0,0)); }
+
+/* animación */
+@keyframes marquee{ from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+@media (prefers-reduced-motion: reduce){ .track{ animation:none; } }
+
+.dark .logo img{ filter: invert(0) brightness(1.1) contrast(1.1); }
