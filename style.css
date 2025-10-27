@@ -127,30 +127,6 @@ html[data-theme="dark"] .tile.minimal .bg{ filter:contrast(1.05) brightness(.92)
 }
 .btn.enter:hover{ filter:brightness(.96); transform:translateY(-2px); box-shadow:0 14px 26px rgba(215,38,56,.30) }
 
-/* Ícono de subsidiaria (arriba-izquierda en desktop) */
-:root{
-  --subs-icon: clamp(28px, 6vw, 56px);
-  --subs-pad: 12px;
-}
-.tile.minimal .subs-icon{
-  position:absolute;
-  top: var(--subs-pad);
-  left: var(--subs-pad);
-  width: var(--subs-icon);
-  height: var(--subs-icon);
-  object-fit: contain;
-  background: rgba(255,255,255,.95);
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  padding: 6px;
-  box-shadow: var(--shadow);
-  z-index: 2;
-}
-html[data-theme="dark"] .tile.minimal .subs-icon{
-  background: #11161f;
-  border-color: rgba(255,255,255,.12);
-}
-
 /* ===== Content blocks ===== */
 .block{
   background:var(--paper);
@@ -563,4 +539,5 @@ html[data-theme="dark"] .cta-banner{
 @media (prefers-reduced-motion: reduce){ .track{ animation:none; } }
 
 .dark .logo img{ filter: invert(0) brightness(1.1) contrast(1.1); }
+
 
